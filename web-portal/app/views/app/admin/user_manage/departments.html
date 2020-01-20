@@ -1,0 +1,64 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1>
+		Department List <small></small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">Department List</li>
+	</ol>
+</section>
+<section class="content">
+	<button type="submit" class="btn btn-primary" data-ng-click="add()"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+</section>
+<section class="content">
+	<div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body table-responsive">
+                    <table class="table table-hover">
+                    	<thead>
+	                        <tr>
+	                            <th class="text-right">#</th>
+								<th class="text-left">Code</th>
+								<th class="text-left">Name</th>
+	                            <th class="text-left">Status</th>
+	                            <th class="text-left">Action</th>
+	                         </tr>
+                    	</thead>
+                        <tbody>
+	                        <tr data-ng-repeat="department in rowCollection ">
+								<td class="text-right">{{$index+1}}</td>
+								<td class="text-left">{{department.department_code}}</td>
+								<td class="text-left">{{department.name}}</td>
+								<td ng-class="{true :'text-left text-success', false:'text-left text-red'}[department.active]">
+									{{department.active ? "Active" : "Inactive"}}
+								</td>
+								<td class="text-left">
+									<span>
+										<button type="submit" class="btn btn-success" data-ng-click="editObj(department.id)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+									</span>
+									<span>
+										<button type="submit" class="btn btn-danger" data-ng-click="deleteObj(department.id)"> <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+									</span>
+								</td>
+							</tr>
+	                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+		<div class="show-hide-animation" >
+			<div class="col-md-6 pull-left">
+				<h5 data-ng-show="rowCollection.length > 0">{{ pageItemText }}</h5>
+				<h5 data-ng-show="rowCollection.length == 0">No department is found</h5>
+			</div>
+			<div class="col-md-5">
+				<pagination data-ng-model="currentPage" data-total-items="totalData" data-boundary-links="true" data-max-size="maxPaginationSize" data-items-per-page="itemsPerPage"></pagination>
+			</div>
+		</div>
+    </div>
+</section>
+
+
+

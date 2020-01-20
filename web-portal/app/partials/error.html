@@ -1,0 +1,13 @@
+<div class="modal-header">
+	<h4 class="modal-title ng-binding danger">
+		<span class="glyphicon glyphicon-remove"></span> {{modalOptions.headerText}}
+	</h4>
+</div>
+
+<div class="modal-body">
+  <p class="red">{{modalOptions.bodyText}}</p>
+</div>
+
+<div class="modal-footer">
+ <button class="btn btn-primary" data-ng-click="modalOptions.ok();">{{modalOptions.actionButtonText}}</button>
+</div>

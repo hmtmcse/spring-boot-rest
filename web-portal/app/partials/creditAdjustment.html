@@ -1,0 +1,30 @@
+<div class="modal-header">
+	<h4 class="modal-title ng-binding">
+        <span class="glyphicon glyphicon-check"></span>
+        <label>User Credit Adjustment</label>
+	</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="add" data-ng-model="obj.type" value="add"/>
+        <label class="form-check-label green" for="add">
+           Add
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="deduct" data-ng-model="obj.type" value="deduct"/>
+        <label class="form-check-label red" for="deduct">
+            Deduct
+        </label>
+    </div>
+
+
+    <div class="form-group">
+        <input type="number" class="form-control" data-ng-model="obj.amount" placeholder="Enter amount"/>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" data-ng-click="cancel()">Cancel</button>
+    <button type="submit" class="btn btn-primary" value="Submit" data-ng-click="submit(obj)">Submit</button>
+</div>

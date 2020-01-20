@@ -1,0 +1,24 @@
+<section class="row" data-ng-hide="forgetPassPart">
+	<div class="row" data-ng-show="!signUpPart">
+        <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12">
+			<div class="form-box" id="login-box" style="margin: 5px auto 0 auto;">
+	            <div class="header" style="background-color:#229cd6">Sign In</div>
+	            <form method="post">
+	                <div class="body bg-gray">       
+	                       <span ng-show="success" style="color:green">{{response}}</span>
+						   <span ng-show="!success" style="color:red">{{response}}</span>
+	                    <div class="form-group">
+	                        <input type="text" data-ng-model="login.email" class="form-control" placeholder="Enter Email" required autofocus="autofocus" onClick="this.setSelectionRange(0, this.value.length)" />
+	                    </div>
+	                    <div class="form-group">
+	                        <input type="password" data-ng-model="login.password" class="form-control" placeholder="Password"  onClick="this.setSelectionRange(0, this.value.length)" required />
+	                    </div>          
+	                    <div class="form-group">
+	                        <button type="submit" class="btn btn-primary btn-block" ng-click="signIn(login)">Sign me in</button> 
+	                    </div> 
+	                </div>
+	            </form>
+	        </div>
+		</div>
+    </div>	
+</section>
