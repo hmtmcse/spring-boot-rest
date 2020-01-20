@@ -1,4 +1,4 @@
-package com.example.accessingdatamysql.model;
+package com.ibcx.poc.model;
 
 import util.GenderType;
 

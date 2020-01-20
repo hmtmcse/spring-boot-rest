@@ -1,7 +1,6 @@
-package com.example.accessingdatamysql.service;
+package com.ibcx.poc.service;
 
-import com.example.accessingdatamysql.model.Department;
-import com.example.accessingdatamysql.model.Employee;
+import com.ibcx.poc.model.Department;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,15 +1,13 @@
-package com.example.accessingdatamysql.controller;
+package com.ibcx.poc.controller;
 
-import com.example.accessingdatamysql.model.Department;
-import com.example.accessingdatamysql.model.Employee;
-import com.example.accessingdatamysql.service.EmployeeService;
+import com.ibcx.poc.model.Employee;
+import com.ibcx.poc.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import util.ResponseBuilder;
 
-import java.util.List;
 import java.util.Optional;
 
 

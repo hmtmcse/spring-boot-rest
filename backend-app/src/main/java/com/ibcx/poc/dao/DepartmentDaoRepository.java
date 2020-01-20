@@ -1,6 +1,6 @@
-package com.example.accessingdatamysql.dao;
+package com.ibcx.poc.dao;
 
-import com.example.accessingdatamysql.model.Department;
+import com.ibcx.poc.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

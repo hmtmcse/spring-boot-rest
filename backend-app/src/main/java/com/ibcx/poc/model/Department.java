@@ -1,6 +1,4 @@
-package com.example.accessingdatamysql.model;
-
-import org.springframework.stereotype.Component;
+package com.ibcx.poc.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

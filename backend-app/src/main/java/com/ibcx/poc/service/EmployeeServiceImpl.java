@@ -1,7 +1,7 @@
-package com.example.accessingdatamysql.service;
+package com.ibcx.poc.service;
 
-import com.example.accessingdatamysql.dao.EmployeeDaoRepository;
-import com.example.accessingdatamysql.model.Employee;
+import com.ibcx.poc.dao.EmployeeDaoRepository;
+import com.ibcx.poc.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
