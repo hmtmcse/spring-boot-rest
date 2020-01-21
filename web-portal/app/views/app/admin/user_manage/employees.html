@@ -22,6 +22,7 @@
 							<th class="text-right">#</th>
 							<th class="text-left">Name</th>
 							<th class="text-left">Gender</th>
+							<th class="text-left">Department</th>
 							<th class="text-left">Designation</th>
 							<th class="text-right">Basic Salary</th>
 							<th class="text-center">Joining Date</th>
@@ -34,6 +35,7 @@
 							<td class="text-right">{{$index+1}}</td>
 							<td class="text-left">{{employee.name}}</td>
 							<td class="text-left">{{employee.gender  | uppercase }}</td>
+							<td class="text-left">{{employee.department ? employee.department.name : ""}}</td>
 							<td class="text-left">{{employee.designation}}</td>
 							<td class="text-right">{{employee.basic_salary | number:'2' }}</td>
 							<td class="text-center">{{employee.joining_date  | date : "yyyy-MM-dd" }}</td>

@@ -2,12 +2,19 @@ package com.ibcx.poc.controller;
 
 import com.ibcx.poc.model.Employee;
 import com.ibcx.poc.service.EmployeeService;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import util.ResponseBuilder;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.Optional;
 
 
@@ -71,6 +78,18 @@ public class EmployeeController {
 			return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR, ex.getMessage()), HttpStatus.OK);
 		}
 		return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_SUCCESS, "Successfully Deleted!"), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "employee/export", method = RequestMethod.POST)
+	public void export(Employee employee, HttpServletResponse response) throws IOException, JRException, SQLException {
+		JasperPrint jasperPrint = null;
+
+		response.setContentType("application/x-download");
+		response.setHeader("Content-Disposition", String.format("attachment; filename=\"users.pdf\""));
+
+		OutputStream out = response.getOutputStream();
+		jasperPrint = employeeService.generateReport();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 	}
 
 }

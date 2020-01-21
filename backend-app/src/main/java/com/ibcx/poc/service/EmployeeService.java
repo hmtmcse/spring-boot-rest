@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ibcx.poc.model.Employee;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public interface EmployeeService {
 
@@ -12,5 +13,6 @@ public interface EmployeeService {
 	public Employee addEmployee(Employee emp);
 	public Employee updateEmployee(Employee emp);
 	public void deleteEmployeeById(int empid);
+	public JasperPrint generateReport();
 
 }

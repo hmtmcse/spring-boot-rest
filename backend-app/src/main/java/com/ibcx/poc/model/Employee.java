@@ -13,12 +13,12 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Integer id;
+    protected Integer department_id;
 
     @Size(max = 30)
     private String name;
 
-    @Size(max = 30)
-    private String photo;
+    private String photoPath;
 
     private Date joining_date;
 
@@ -32,7 +32,8 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private GenderType gender;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id", nullable = false, insertable = false, updatable = false)
     private Department department;
 
     public Employee() {
@@ -58,12 +59,12 @@ public class Employee {
         this.name = name;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
     public Date getJoining_date() {
@@ -112,5 +113,13 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Integer getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(Integer department_id) {
+        this.department_id = department_id;
     }
 }
