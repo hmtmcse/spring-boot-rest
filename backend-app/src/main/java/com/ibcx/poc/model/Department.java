@@ -10,7 +10,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 
 @Entity
 public class Department {
@@ -27,10 +26,6 @@ public class Department {
 	private String name;
 
 	private Boolean isActive = true;
-
-	@OneToMany
-	@JoinColumn(name="department_id")
-	private List<Employee> employees;
 
 	public Department(){}
 

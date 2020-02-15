@@ -1,6 +1,5 @@
 package com.ibcx.poc.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -39,10 +38,9 @@ public class Employee {
     private GenderType gender;
 
     @ManyToOne
-    @JoinColumn(name="department_id",
-            insertable=false, updatable=false)
-    @JsonIgnore
+    @JoinColumn(name="department_id")
     private Department department;
+
 
     public Employee(){}
 

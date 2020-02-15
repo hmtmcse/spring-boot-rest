@@ -52,7 +52,7 @@ public class FileUploaderController {
         String rootPath;
         String newFileName = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
         try {
-            // Get the file and save it somewhere
+
             byte[] bytes = file.getBytes();
 
             String staticPath = environment.getProperty("static.resource.path");

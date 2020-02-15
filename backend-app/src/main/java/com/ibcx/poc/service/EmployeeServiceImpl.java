@@ -1,6 +1,8 @@
 package com.ibcx.poc.service;
 
+import com.ibcx.poc.dao.DepartmentDaoRepository;
 import com.ibcx.poc.dao.EmployeeDaoRepository;
+import com.ibcx.poc.model.Department;
 import com.ibcx.poc.model.Employee;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -15,10 +17,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeDaoRepository employeeDaoRepository;
+    @Autowired
+    DepartmentDaoRepository departmentDaoRepository;
 
     @Override
     public List<Employee> getEmployees() {
-        return employeeDaoRepository.findAll();
+        List<Employee> employees = new ArrayList<>();
+
+        for (Employee employee : employeeDaoRepository.findAll()){
+           // Department department = departmentDaoRepository.findById(employee.getDepartment_id()).get();
+           // employee.setDepartment(department);
+            employees.add(employee);
+        }
+        return employees;
+
     }
 
     @Override

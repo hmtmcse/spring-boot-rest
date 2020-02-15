@@ -22,6 +22,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -31,9 +33,6 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
-	DepartmentService departmentService;
-
-	private static String UPLOADED_FOLDER = "static-resources/employee/";
 
 	@RequestMapping(value = "/employee/all", method = RequestMethod.GET)
 	public ResponseEntity<Object> getAll() {
