@@ -2,7 +2,7 @@
 
 define(['app'], function (app) {
 	
-	var employeeController = function (growl, $routeParams, $scope, _, constantService, $filter, navigationService, authorizationService, localStorageService,
+	var employeeController = function ($upload, growl, $routeParams, $scope, _, constantService, $filter, navigationService, authorizationService, localStorageService,
 		configurationService, ngProgress, apiService, loadService ) {
 		
 		var promis, departmentList = [];
@@ -60,13 +60,38 @@ define(['app'], function (app) {
 					objectId = $routeParams.id;
 					loadEmployee(objectId);
 				}else{
+					$scope.obj = {};
 					$scope.departmentList = angular.copy(departmentList);
 				}
 			});
 		};
 
+		$scope.uploadFile = function (files) {
+			$scope.message = "";
+			loadService.showDialog();
+			for (var i = 0; i < files.length; i++) {
+				var file = files[i];
+				$scope.upload = $upload.upload({
+					url: apiService.restPath("fileUploader/employee-photo"),
+					method: 'POST',
+					file: file,
+				}).success(function(data) {
+					loadService.hideDialog();
+					if(data.status == "success"){
+						$scope.obj.photo = data.data.path;
+					}else {
+						growl.error(data.message, {ttl: 3000});
+					}
+				}).error(function() {
+					loadService.hideDialog();
+					growl.error("Something went wrong!", {ttl: 3000});
+				});
+			};
+		};
+
 	 	var init = function () {
 			ngProgress.start();
+			$scope.apiRootPath = apiService.restPath();
 			$scope.userInfo = authorizationService.getUserInfo();
 			$scope.btnName = "Save";
 			loadDepartments();
@@ -77,7 +102,7 @@ define(['app'], function (app) {
 	 	
 	 };
 	 
-    app.register.controller('employeeController', ['growl', '$routeParams', '$scope', '_', 'constantService', '$filter', 'navigationService', 'authorizationService',
+    app.register.controller('employeeController', ['$upload', 'growl', '$routeParams', '$scope', '_', 'constantService', '$filter', 'navigationService', 'authorizationService',
 	'localStorageService', 'configurationService', 'ngProgress', 'apiService', 'loadService',
 		employeeController]);
    
