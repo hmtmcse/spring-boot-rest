@@ -22,7 +22,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public Optional<Department> getDepartmentById(int departmentId) {
+	public Optional<Department> getDepartmentById(Long departmentId) {
 		return departmentDaoRepository.findById(departmentId);
 	}
 
@@ -37,7 +37,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public void deleteDepartmentById(int departmentId) {
+	public void deleteDepartmentById(Long departmentId) {
 		departmentDaoRepository.deleteById(departmentId);
 	}
 }

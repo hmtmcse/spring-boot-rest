@@ -1,6 +1,8 @@
 package com.ibcx.poc.controller;
 
+import com.ibcx.poc.model.Department;
 import com.ibcx.poc.model.Employee;
+import com.ibcx.poc.service.DepartmentService;
 import com.ibcx.poc.service.EmployeeService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -9,11 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import util.ResponseBuilder;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -24,6 +31,9 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
+	DepartmentService departmentService;
+
+	private static String UPLOADED_FOLDER = "static-resources/employee/";
 
 	@RequestMapping(value = "/employee/all", method = RequestMethod.GET)
 	public ResponseEntity<Object> getAll() {
@@ -31,7 +41,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Object> getById(@PathVariable int id) {
+	public ResponseEntity<Object> getById(@PathVariable Long id) {
 		Optional<Employee> employee = employeeService.getEmployeeById(id);
 		if (!employee.isPresent()) {
 			return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR,  "Employee not found"), HttpStatus.OK);
@@ -51,7 +61,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee/update/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Object> update(@RequestBody Employee employee, @PathVariable int id) {
+	public ResponseEntity<Object> update(@RequestBody Employee employee, @PathVariable Long id) {
 		Optional<Employee> empObject = employeeService.getEmployeeById(id);
 		if (!empObject.isPresent()) {
 			return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR, "invalid employee"), HttpStatus.OK);
@@ -66,7 +76,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Object> deleteById(@PathVariable int id) {
+	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
 		Optional<Employee> employee = employeeService.getEmployeeById(id);
 		if (!employee.isPresent()) {
 			return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR, "invalid department"), HttpStatus.OK);
@@ -80,7 +90,7 @@ public class EmployeeController {
 		return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_SUCCESS, "Successfully Deleted!"), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "employee/export", method = RequestMethod.POST)
+	@RequestMapping(value = "employee/export", method = RequestMethod.GET)
 	public void export(Employee employee, HttpServletResponse response) throws IOException, JRException, SQLException {
 		JasperPrint jasperPrint = null;
 

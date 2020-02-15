@@ -23,7 +23,7 @@ public class DepartmentController {
     }
 
     @RequestMapping(value = "/department/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> getById(@PathVariable int id) {
+    public ResponseEntity<Object> getById(@PathVariable Long id) {
         Optional<Department> department = departmentService.getDepartmentById(id);
         if (!department.isPresent()) {
             return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR,  "department not found"), HttpStatus.OK);
@@ -43,7 +43,7 @@ public class DepartmentController {
 	}
 
     @RequestMapping(value = "/department/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> update(@RequestBody Department department, @PathVariable int id) {
+    public ResponseEntity<Object> update(@RequestBody Department department, @PathVariable Long id) {
         Optional<Department> dep = departmentService.getDepartmentById(id);
         if (!dep.isPresent()) {
             return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR, "invalid department"), HttpStatus.OK);
@@ -58,7 +58,7 @@ public class DepartmentController {
     }
 
     @RequestMapping(value = "/department/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteById(@PathVariable int id) {
+    public ResponseEntity<Object> deleteById(@PathVariable Long id) {
         Optional<Department> department = departmentService.getDepartmentById(id);
         if (!department.isPresent()) {
             return new ResponseEntity<Object>(ResponseBuilder.makeResponse(ResponseBuilder.STATUS_ERROR, "invalid department"), HttpStatus.OK);

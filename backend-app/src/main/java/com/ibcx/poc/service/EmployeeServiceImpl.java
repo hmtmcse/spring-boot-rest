@@ -7,10 +7,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -25,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getEmployeeById(int employeeId) {
+    public Optional<Employee> getEmployeeById(Long employeeId) {
         return employeeDaoRepository.findById(employeeId);
     }
 
@@ -40,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployeeById(int employeeId) {
+    public void deleteEmployeeById(Long employeeId) {
         employeeDaoRepository.deleteById(employeeId);
     }
 
@@ -52,7 +49,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             JasperReport jasperReport = JasperCompileManager.compileReport(reportPath + "\\employee.jrxml");
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(employeeDaoRepository.findAll());
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("createdBy", "Websparrow.org");
+            parameters.put("createdBy", "Mahfuz Ahmed");
+            parameters.put("createdOn", new Date());
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
                     jrBeanCollectionDataSource);
             JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "\\Emp-Rpt.pdf");

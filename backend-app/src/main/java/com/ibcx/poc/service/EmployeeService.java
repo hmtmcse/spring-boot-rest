@@ -9,10 +9,10 @@ import net.sf.jasperreports.engine.JasperPrint;
 public interface EmployeeService {
 
 	public List<Employee> getEmployees();
-	public Optional<Employee> getEmployeeById(int empid);
+	public Optional<Employee> getEmployeeById(Long empid);
 	public Employee addEmployee(Employee emp);
 	public Employee updateEmployee(Employee emp);
-	public void deleteEmployeeById(int empid);
+	public void deleteEmployeeById(Long empid);
 	public JasperPrint generateReport();
 
 }
