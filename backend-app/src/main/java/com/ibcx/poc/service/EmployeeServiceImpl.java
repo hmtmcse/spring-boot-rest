@@ -17,20 +17,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeDaoRepository employeeDaoRepository;
-    @Autowired
-    DepartmentDaoRepository departmentDaoRepository;
 
     @Override
     public List<Employee> getEmployees() {
-        List<Employee> employees = new ArrayList<>();
-
-        for (Employee employee : employeeDaoRepository.findAll()){
-           // Department department = departmentDaoRepository.findById(employee.getDepartment_id()).get();
-           // employee.setDepartment(department);
-            employees.add(employee);
-        }
-        return employees;
-
+        return employeeDaoRepository.findAll();
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.ibcx.poc.controller;
 
 import com.ibcx.poc.model.Department;
 import com.ibcx.poc.service.DepartmentService;
-import com.ibcx.poc.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,6 @@ public class DepartmentController {
 
     @Autowired
     DepartmentService departmentService;
-    @Autowired
-    EmployeeService employeeService;
 
     @RequestMapping(value = "/department/all", method = RequestMethod.GET)
     public ResponseEntity<Object> getAll() {
