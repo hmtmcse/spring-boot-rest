@@ -6,14 +6,12 @@ define(['app'], function (app) {
     var apiService = function ($http, $q, $location) {
 
         var serviceBase = 'http://localhost:8080/';
-        ///var serviceBase = 'http://104.154.171.213:8080/rsos/';
-        //var serviceBase = 'http://2.56.116.214:8080/rsos/';
-		var imageUploader = 'imageUploader/upload';
+        
+	var imageUploader = 'imageUploader/upload';
 
-
-		this.post = function (q, obj) {
-			return $http.post(serviceBase + q, obj).then(function (results) {
-				return results.data;
+	this.post = function (q, obj) {
+		return $http.post(serviceBase + q, obj).then(function (results) {
+			return results.data;
             });
         };
 
